@@ -1,0 +1,15 @@
+.SalesHits{
+    max-width: 100%;
+}
+.heading{
+    font-family:sans-serif ;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 20px;
+}

@@ -1,9 +1,14 @@
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-
-function App() {
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+function App(props) {
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <Header store={props.store} />
+      <Main state={props.store.getState()} />
+    </BrowserRouter>
   );
 }
 

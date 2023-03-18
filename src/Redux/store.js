@@ -1,4 +1,6 @@
 const uppDateSearchText = 'UPP-DATE-SEARCH-TEXT'
+const addOrder = 'ADD-ORDER'
+const delOrder = 'DEL-ORDER'
 let store = {
     _state: {
         Header:
@@ -28,7 +30,19 @@ let store = {
                         { heading: 'Процессор', cost: `${20000}р`, img: 'https://avatars.mds.yandex.net/i?id=f6113085e2ed6d3a42391a6c3cc213454a0f51dc-4502909-images-thumbs&n=13', id: 9 },
                         { heading: 'Материнская Плата', cost: `${15000}р`, img: 'https://avatars.mds.yandex.net/i?id=abd5e8fb4a554495078ceec1a04be9e7f92a8d94-8492330-images-thumbs&n=13', id: 10 }
                     ]    
+            },
+            OrdersPage:
+            {
+                OrdersPageData:
+                    [
+                        { heading: 'Игровые Наушнки', cost:`${5000}р`, img: 'https://avatars.mds.yandex.net/i?id=2df74f5b71423e38f23130d92851966f0570bcde-8438571-images-thumbs&n=13', id: 1, firstDate:'Заказ от 18 марта',secondDate:'Прибудет до 23 марта' },
+                        { heading: 'Игровая Мышка', cost: `${4000}р`, img: 'https://avatars.mds.yandex.net/i?id=6c87d8ac4d5379ed81e542684695d7352c131d7c-4414558-images-thumbs&n=13', id: 2, firstDate:'Заказ от 16 марта',secondDate:'Прибудет до 21 марта' },
+                        { heading: 'Компьютер', cost:`${200000}р`, img: 'https://avatars.mds.yandex.net/i?id=a85d49cb736fcd7e80822d0d71d79df23eaf2a53-9065739-images-thumbs&n=13', id: 3, firstDate:'Заказ от 20 марта',secondDate:'Прибудет до 27 марта' }
+                    ]
             }
+        },
+        footer: {
+            
         }
     },
     _rerender() {
@@ -44,10 +58,46 @@ let store = {
         if (action.type === uppDateSearchText) {
             store._state.Header.SearchElems.inputValue = action.value
             this._rerender()
+        } else if (action.type === addOrder) {
+            let newOrder = {
+                heading: action.heading,
+                cost: action.cost,
+                img: action.img,
+                id: action.id,
+                firstDate: 'Заказ от 18 марта',
+                secondDate: 'Прибудет до 23 марта'
+            }
+            this._state.Main.OrdersPage.OrdersPageData.push(newOrder)
+        } else if (action.type === delOrder) {
+            this._state.Main.OrdersPage.OrdersPageData.forEach(item => {
+                if (item.id === action.id) {
+                    this._state.Main.OrdersPage.OrdersPageData.splice(item, 1)
+                    this._rerender()
+                }
+            })
         }
     }
 }
 
+export const addOrderActionCreator = (name, cost, Image) => {
+    let id = store._state.Main.OrdersPage.OrdersPageData.length + 1
+    let action = {
+        type: addOrder,
+        heading:name,
+        cost: cost,
+        img: Image,
+        id: id
+    }
+    return action
+    this._rerender()
+}
+export const delOrderActionCreator = (id) => {
+    let action = {
+        type: delOrder,
+        id:id
+    }
+    return action
+}
 export const uppDateSearchTextActionCreator = (value)=>({type:uppDateSearchText, value:value})
 
 window.stare = store

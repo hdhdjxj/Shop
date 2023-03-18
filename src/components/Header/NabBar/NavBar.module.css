@@ -10,3 +10,7 @@
 .item:not(:last-child){
     margin-right: 15px;
 }
+a{
+    text-decoration: none;
+    color: white;
+}

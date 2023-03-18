@@ -30,7 +30,7 @@
 .input>input::placeholder::before{
     background-image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png';
 }
-.catalog>button{
+.catalog>a>button{
     height: 30px;
     width: 100px;
     font-size: 20px;

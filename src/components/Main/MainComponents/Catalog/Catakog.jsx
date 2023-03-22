@@ -4,7 +4,7 @@ import style from './Catalog.module.css'
 const Catalog = (props) => {
     return (
         <div className={style.catalog}>
-            <SalesHits SalesHits={props.SalesHits} dispatch={props.dispatch} Orders={props.Orders } />
+            <SalesHits state={props.store.getState()} store={props.store } />
         </div>
     )
 }

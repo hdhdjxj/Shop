@@ -1,10 +1,8 @@
 import React from "react";
-import { delOrderActionCreator } from "../../../../../Redux/store";
 import styles from './OrdersItem.module.css'
 const OrdersItem = (props) => {
     const delOlder = () => {
-        let action = delOrderActionCreator(props.id)
-        props.dispatch(action)
+        props.delOlderFunc(props.id)
     }
     return (
         <div className={styles.OrdersItem}>

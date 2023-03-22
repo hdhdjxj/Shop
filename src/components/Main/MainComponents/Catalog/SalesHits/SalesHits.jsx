@@ -1,10 +1,8 @@
 import React from "react";
 import styles from './SalesHits.module.css'
-import SalesHitsItem from "./SalesHitsItem/SalesHitsItem";
+import SalesHitsItemContainer from "./SalesHitsItem/SalesHitsItemContainer";
 const SalesHits = (props) => {
-    let allPosts = props.SalesHits.SalesHitsData.map(item => {
-        return <SalesHitsItem Orders = {props.Orders} dispatch={props.dispatch} img={item.img} heading={item.heading} cost={item.cost} />
-    })
+    let allPosts = props.state.Main.SalesHits.SalesHitsData.map(item => {return <SalesHitsItemContainer store={props.store} img={item.img} heading={item.heading} cost={item.cost} />})
     return (
         <div className={styles.SalesHits}>
             <div className={styles.heading}>Хиты продаж</div>

@@ -7,7 +7,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <Header store={props.store} />
-      <Main state={props.store.getState()} dispatch={props.store.dispatch.bind(props.store)} />
+      <Main store={props.store} dispatch={ props.store.dispatch} />
     </BrowserRouter>
   );
 }

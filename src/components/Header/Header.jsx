@@ -1,12 +1,12 @@
 import React from "react"
 import styles from './Header.module.css'
 import NavBar from "./NabBar/NavBar"
-import SearchElems from "./SearchElems/SearchElems"
+import SearchElemsContainer from "./SearchElems/SearchElemsContainer"
 const Header = (props) => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <SearchElems dispatch={props.store.dispatch.bind(props.store)} state={props.store.getState()} />
+                <SearchElemsContainer state={props.store.getState()} dispatch={ props.store.dispatch}/>
                 <NavBar/>
             </div>
         </header>

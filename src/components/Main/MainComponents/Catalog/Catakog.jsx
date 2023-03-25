@@ -1,10 +1,10 @@
 import React from "react";
-import SalesHits from "./SalesHits/SalesHits";
+import SalesHitsContainer from "./SalesHits/SalesHitsContainer";
 import style from './Catalog.module.css'
-const Catalog = (props) => {
+const Catalog = () => {
     return (
         <div className={style.catalog}>
-            <SalesHits state={props.store.getState()} store={props.store } />
+            <SalesHitsContainer/>
         </div>
     )
 }

@@ -1,3 +1,5 @@
+import { valueActionCreator } from "./HeaderReducer"
+
 const addOrder = 'ADD-ORDER'
 const delOrder = 'DEL-ORDER'
 
@@ -29,14 +31,15 @@ const MainInitial = {
     }
 }
 
-export const addOrderActionCreator = (name, cost, Image) => {
-    let id = MainInitial.OrdersPage.OrdersPageData.length + 1
+export const addOrderActionCreator = (img,heading,cost) => {
     let action = {
-        type: addOrder,
-        heading:name,
+        heading: heading,
         cost: cost,
-        img: Image,
-        id: id
+        img: img,
+        firstDate: 'Заказ от 20 марта',
+        secondDate: 'Прибудет до 27 марта',
+        id:MainInitial.OrdersPage.OrdersPageData.length + 1 ,
+        type: addOrder
     }
     return action
 }
@@ -50,6 +53,9 @@ export const delOrderActionCreator = (id) => {
 const MainReducer = (state = MainInitial,action) => {
     switch (action.type) {
         case addOrder:
+            let newState = { ...state }
+            newState.OrdersPage = { ...state.OrdersPage }
+            newState.OrdersPage.OrdersPageData = [...state.OrdersPage.OrdersPageData]
             let newOrder = {
                 heading: action.heading,
                 cost: action.cost,
@@ -58,15 +64,18 @@ const MainReducer = (state = MainInitial,action) => {
                 firstDate: 'Заказ от 18 марта',
                 secondDate: 'Прибудет до 23 марта'
             }
-            state.OrdersPage.OrdersPageData.push(newOrder)
-            return state
+            newState.OrdersPage.OrdersPageData.push(newOrder)
+            return newState
         case delOrder:
-            state.OrdersPage.OrdersPageData.forEach(item => {
-                if (item.id === action.id) {
-                    state.OrdersPage.OrdersPageData.splice(item, 1)
+            let newState2 = { ...state }
+            newState2.OrdersPage = { ...state.OrdersPage }
+            newState2.OrdersPage.OrdersPageData = [...state.OrdersPage.OrdersPageData]
+            for (let i = 0; i < newState2.OrdersPage.OrdersPageData.length; i++){
+                if (newState2.OrdersPage.OrdersPageData[i].id == action.id) {
+                    newState2.OrdersPage.OrdersPageData.splice(i,1)
                 }
-            })
-            return state
+            }
+            return newState2
         default:return state
     }
 }

@@ -2,11 +2,11 @@ import React from "react"
 import styles from './Header.module.css'
 import NavBar from "./NabBar/NavBar"
 import SearchElemsContainer from "./SearchElems/SearchElemsContainer"
-const Header = (props) => {
+const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <SearchElemsContainer state={props.store.getState()} dispatch={ props.store.dispatch}/>
+                <SearchElemsContainer/>
                 <NavBar/>
             </div>
         </header>

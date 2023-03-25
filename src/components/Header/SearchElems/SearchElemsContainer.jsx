@@ -1,12 +1,26 @@
-import React from "react";
 import { uppDateSearchTextActionCreator } from "../../../Redux/HeaderReducer";
+import { valueActionCreator } from "../../../Redux/HeaderReducer";
 import SearchElems from "./SearchElems";
-const SearchElemsContainer = (props) => {
-    const uppDateNewValue = (text) => {
-        let value = text
-        let action = uppDateSearchTextActionCreator(value)
-        props.dispatch(action)
+import { connect} from "react-redux";
+
+let mapStateToProps = (state) => {
+    return {
+        value: state.Header.SearchElems.inputValue
     }
-    return (<SearchElems uppDateNewValueText={uppDateNewValue} state={props.state} />)
 }
+let mapDispatchToProps =(dispatch) => {
+    return {
+        uppDateNewValueText: (text) => {
+            let value = text
+            let action = uppDateSearchTextActionCreator(value)
+            dispatch(action)
+        },
+        valueText: () => {
+            const action = valueActionCreator()
+            let value = dispatch(action)
+            return value
+        }
+    }
+}
+const SearchElemsContainer = connect(mapStateToProps,mapDispatchToProps)(SearchElems)
 export default SearchElemsContainer

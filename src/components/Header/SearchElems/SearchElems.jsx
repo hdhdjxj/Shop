@@ -13,7 +13,7 @@ const SearchElems = (props) => {
             <NavLink to='/Catalog'><button>Каталог</button></NavLink>
             </div>    
             <div className={styles.input}>
-                <input type="text" placeholder="Search" ref={input} onChange={uppDateNewValue} value={props.state.Header.SearchElems.inputValue} />
+                <input type="text" placeholder="Search" ref={input} onChange={uppDateNewValue}value={props.value} />
             </div>
         </div>
     )
